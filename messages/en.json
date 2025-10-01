@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Generate High-Quality TikTok Comments for FREE",
+    "description": "Generate standout TikTok comments in seconds, download them as PNGs, and boost creativity with AI-powered images—all in one sleek web app."
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, fr {fr FR} en {🇺🇸 US} other {Unknown}}"
+  }
+}

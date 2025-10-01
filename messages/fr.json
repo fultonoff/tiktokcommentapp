@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Générez des commentaires TikTok de haute qualité GRATUITEMENT",
+    "description": "Créez des commentaires TikTok percutants en quelques secondes, téléchargez-les en PNG et stimulez votre créativité avec des images générées par IA—le tout dans une application web élégante."
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, fr {fr FR} en {🇺🇸 US} other {Unknown}}"
+  }
+}
