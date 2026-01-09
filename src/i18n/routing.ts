@@ -8,6 +8,9 @@ export const routing = defineRouting({
     '/': '/',
     '/pathnames': {
       fr: '/pfadnamen'
-    }
+    },
+    'studio': {
+      fr: 'studio-fr'
+    },
   }
 });

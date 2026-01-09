@@ -1,24 +1,6 @@
 import { create } from "zustand";
-import type { FileWithPreview } from "@/hooks/use-file-upload";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { CommentsState } from "@/types/storetypes";
 
-interface CommentsState {
-  message: string;
-  name: string;
-  updateText: (newText: string) => void;
-  updateName: (newText: string) => void;
-  clearText: () => void;
-
-  // 📷 avatar
-
-  avatar: FileWithPreview | StaticImport | string | null
-  setAvatar: (value: FileWithPreview | StaticImport | string | null) => void
-  clearAvatar: () => void;
-
-  // ✅ verified check
-  verified: boolean;
-  setVerified: (value: boolean) => void;
-}
 
 export const useCommentsStore = create<CommentsState>((set) => ({
   message: "hello",
@@ -34,4 +16,8 @@ export const useCommentsStore = create<CommentsState>((set) => ({
   // ✅ verified default = true
   verified: true,
   setVerified: (value) => set({ verified: value }),
+
+  // 📐 Scaling
+  Scale: 1,
+  setScale: (value: number) => set({ Scale: value }),
 }));
