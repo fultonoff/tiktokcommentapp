@@ -6,7 +6,16 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   images: {
-    domains: ["ik.imagekit.io", 'pollinations.ai', 'avatar.vercel.sh'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "avatar.vercel.sh",
+      },
+    ]
   },
 };
 
