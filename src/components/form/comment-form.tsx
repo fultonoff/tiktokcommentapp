@@ -14,7 +14,7 @@ const MAX_NAME_LENGTH = 24
 const CommentForm = () => {
 
 
-  const onComment = useCommentsStore((state: { updateText: any }) => state.updateText)
+  const onComment = useCommentsStore((state) => state.updateText);
   const commentText = useCommentsStore((state) => state.message)
     const userName = useCommentsStore((state) => state.name)
     const onUserName = useCommentsStore((state) => state.updateName)

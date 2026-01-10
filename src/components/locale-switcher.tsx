@@ -2,31 +2,30 @@
 
 import clsx from "clsx";
 import { useParams } from "next/navigation";
-import { useState, useTransition } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTransition } from "react";
+
 import ReactCountryFlag from "react-country-flag";
 
 import {
   Select,
   SelectContent,
-  SelectItem,
   SelectTrigger,
-  SelectValue,
+ 
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 export default function LocaleSwitcher() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const t = useTranslations("LocaleSwitcher");
-  const [en, setEn] = useState("en");
-  const [fr, setSv] = useState("fr");
+  // const t = useTranslations("LocaleSwitcher");
+  const en = "en";
+  const fr =  "fr";
 
   const pathname = usePathname();
   const params = useParams();
   const { locale } = params;
 
-  function onSelectChange(value: any) {
+  function onSelectChange(value: string) {
     const nextLocale = value;
 
     startTransition(() => {
@@ -42,11 +41,6 @@ export default function LocaleSwitcher() {
     });
   }
 
-  const handleClick = (value: any) => {
-    console.log("Clicked value:", value);
-
- 
-  };
   return (
     <div
       className={clsx(
@@ -54,8 +48,8 @@ export default function LocaleSwitcher() {
         isPending && "transition-opacity [&:disabled]:opacity-30"
       )}
     >
-      <div className="border-none">
-        <Select className='border-primary '>
+      <div className="border-none border-primary">
+        <Select>
           <SelectTrigger className="border-none">
             <div className="text-3xl border-none">
               {locale === "en" ? (

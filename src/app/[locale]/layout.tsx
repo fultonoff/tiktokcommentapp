@@ -3,9 +3,10 @@ import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
+import '../globals.css'
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from 'react-hot-toast';
+
 
 type Props = {
   children: React.ReactNode;
@@ -49,6 +50,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
             >
+
 
         {children}
           </ThemeProvider>
