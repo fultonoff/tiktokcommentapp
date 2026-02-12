@@ -51,11 +51,11 @@ export default function LocaleSwitcher() {
       <div className="border-none border-primary">
         <Select>
           <SelectTrigger className="border-none">
-            <div className="text-3xl border-none">
+            <div className="text-xl border-none">
               {locale === "en" ? (
-                <ReactCountryFlag countryCode="GB" svg />
+                <ReactCountryFlag countryCode="GB" sizes="sm" svg />
               ) : (
-                <ReactCountryFlag countryCode="FR" svg className="h-fit"/>
+                <ReactCountryFlag countryCode="FR" sizes="sm" svg className=""/>
               )}
             </div>
           </SelectTrigger>
@@ -66,7 +66,7 @@ export default function LocaleSwitcher() {
               {fr}
             </div>
             <div onClick={() => onSelectChange(en)} className="text-main p-2 flex items-center gap-1 cursor-pointer hover:bg-accent">
-              <ReactCountryFlag countryCode="GB" svg className="text-xl"/>
+              <ReactCountryFlag sizes="sm" countryCode="GB" svg className="text-xl"/>
               <span className="uppercase font-medium">
               {en}
 
