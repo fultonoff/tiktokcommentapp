@@ -1,9 +1,10 @@
 import React from 'react'
 import { CommentCard } from './CommentCard'
+import { Card } from '../ui/card'
 
 const PreviewCard = ({ commentData, commentRef, activePlatform, locale }: any) => {
   return (
-     <div className="rounded-[40px] sm:rounded-[48px] border-[6px] sm:border-[12px] border-white overflow-hidden shadow-2xl bg-checkered min-h-[400px] sm:min-h-[600px] flex items-center justify-center relative group p-4 sm:p-12 overflow-x-auto">
+     <Card className="rounded-[40px] sm:rounded-[48px] overflow-hidden shadow-2xl bg-checkered min-h-[400px] sm:min-h-[600px] flex items-center justify-center relative group p-4 sm:p-12 overflow-x-auto">
                 <div className="w-full max-w-full flex justify-center">
                   <CommentCard
                     platform={activePlatform}
@@ -20,7 +21,7 @@ const PreviewCard = ({ commentData, commentRef, activePlatform, locale }: any) =
                     </span>
                   </div>
                 </div>
-              </div>
+              </Card>
   )
 }
 

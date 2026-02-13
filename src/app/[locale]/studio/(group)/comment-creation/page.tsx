@@ -25,6 +25,19 @@ import EditReply from "@/components/commentCreation/EditReply";
 import { handleAvatarUpload } from "@/lib/commentCreation/handleAvatarUpload";
 import { Locale, translations } from "@/components/commentCreation/translations";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Image from "next/image";
 
 
 const App: React.FC = () => {
@@ -96,12 +109,12 @@ const App: React.FC = () => {
     };
 
     return (
-      <div
+      <Card
         ref={(el) => {
           if (el) editorRefs.current[data.id] = el;
         }}
         onClick={() => setFocusedId(data.id)}
-        className={`p-4 sm:p-5 rounded-[2rem] transition-all duration-300 border-2 cursor-pointer relative ${isFocused ? "bg-white border-indigo-500 shadow-xl scale-[1.01]" : "bg-slate-50 border-transparent border-slate-200 grayscale-[0.2] opacity-70 hover:opacity-100 hover:grayscale-0"} space-y-4`}
+        className={`p-4 sm:p-5 transition-all duration-300 cursor-pointer relative ${isFocused ? "bg-secondary border-primary shadow-xl scale-[1.01]" : "bg-slate-50 border-transparent grayscale-[0.2] opacity-70 hover:opacity-100 hover:grayscale-0"} space-y-4`}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -121,7 +134,7 @@ const App: React.FC = () => {
             </span>
           </div>
           <div className="flex items-center gap-1 sm:gap-2">
-            <button
+            <Button
               onClick={(e) => {
                 e.stopPropagation();
                 addNestedReply(data.id, setCommentData, setFocusedId);
@@ -130,9 +143,9 @@ const App: React.FC = () => {
               className="p-2 text-indigo-500 hover:text-indigo-700 transition-colors bg-indigo-50 rounded-xl"
             >
               <Plus className="w-4 h-4" />
-            </button>
+            </Button>
             {!isMain && (
-              <button
+              <Button
                 onClick={(e) => {
                   e.stopPropagation();
                   removeReply(data.id, focusedId, setCommentData, setFocusedId);
@@ -140,7 +153,7 @@ const App: React.FC = () => {
                 className="p-2 text-slate-400 hover:text-red-500 transition-colors bg-white rounded-xl border border-slate-200"
               >
                 <Trash2 className="w-4 h-4" />
-              </button>
+              </Button>
             )}
             <button
               onClick={(e) => {
@@ -159,125 +172,123 @@ const App: React.FC = () => {
           <div className="space-y-4 animate-in fade-in zoom-in duration-300">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
-                  Name
-                </label>
-                <input
+                <Label className="text-[10px] font-bold  ml-1">Name</Label>
+                <Input
                   type="text"
                   value={data.authorName}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => handleUpdate({ authorName: e.target.value })}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/10"
+                  className="w-full    px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/10"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
-                  Username
-                </label>
-                <input
+                <Label className="text-[10px] font-bold ml-1">Username</Label>
+                <Input
                   type="text"
                   value={data.authorHandle}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) =>
                     handleUpdate({ authorHandle: e.target.value })
                   }
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/10"
+                  className="w-full px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/10"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
-                Message
-              </label>
-              <textarea
+              <Label className="text-[10px] font-bold  ml-1">Message</Label>
+              <Textarea
                 value={data.text}
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => handleUpdate({ text: e.target.value })}
-                className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm h-20 outline-none resize-none focus:ring-2 focus:ring-indigo-500/10"
+                className="w-full  px-3 py-2 text-sm h-20 outline-none resize-none focus:ring-2 focus:ring-primary/10"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1 flex items-center gap-1">
+                <Label className="text-[10px] font-bold  ml-1 flex items-center gap-1">
                   <ThumbsUp className="w-2.5 h-2.5" /> Likes
-                </label>
-                <input
+                </Label>
+                <Input
                   type="text"
                   value={data.likes}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => handleUpdate({ likes: e.target.value })}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none"
+                  className="w-full px-3 py-2 text-sm outline-none"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1 flex items-center gap-1">
+                <Label className="text-[10px] font-bold  ml-1 flex items-center gap-1">
                   <Clock className="w-2.5 h-2.5" /> Time
-                </label>
-                <input
+                </Label>
+                <Input
                   type="text"
                   value={data.timestamp}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => handleUpdate({ timestamp: e.target.value })}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none"
+                  className="w-full  px-3 py-2 text-sm outline-none"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 p-3 bg-indigo-50/50 rounded-2xl border border-indigo-100">
+            <div className="grid grid-cols-2 gap-3 p-3  rounded-2xl border">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
-                  Bubble Bg
-                </label>
-                <input
+                <Label className="text-[10px] font-bold  ml-1">Bubble Bg</Label>
+                <Input
                   type="color"
                   value={data.backgroundColor}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) =>
                     handleUpdate({ backgroundColor: e.target.value })
                   }
-                  className="w-full h-8 rounded-lg outline-none cursor-pointer"
+                  className="w-full h-8 p-0 outline-none cursor-pointer"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
+                <Label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
                   Text Color
-                </label>
-                <input
+                </Label>
+                <Input
                   type="color"
                   value={data.textColor}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => handleUpdate({ textColor: e.target.value })}
-                  className="w-full h-8 rounded-lg outline-none cursor-pointer"
+                  className="w-full h-8 p-0 outline-none cursor-pointer"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-100/50 rounded-2xl border border-slate-200">
+            <div className="grid grid-cols-1 rounded-sm sm:grid-cols-2 gap-3 p-3 border">
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
+                <Label className="text-[10px] font-bold  ml-1">
                   font family
-                </label>
-                <select
+                </Label>
+
+                <Select
                   value={data.fontFamily}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => handleUpdate({ fontFamily: e.target.value })}
-                  className="w-full bg-white border border-slate-200 rounded-xl px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500/10"
+                  onValueChange={(value) => handleUpdate({ fontFamily: value })}
                 >
-                  {FONT_OPTIONS.map((f) => (
-                    <option key={f.value} value={f.value}>
-                      {f.name}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full px-2 py-1.5 text-xs focus:ring-2 focus:ring-primary/10"
+                  >
+                    <SelectValue placeholder="Select font" />
+                  </SelectTrigger>
+
+                  <SelectContent>
+                    {FONT_OPTIONS.map((f) => (
+                      <SelectItem key={f.value} value={f.value}>
+                        {f.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
-                  font size
-                </label>
+                <Label className="text-[10px] font-bold  ml-1">font size</Label>
                 <div className="flex items-center gap-2">
-                  <input
+                  <Input
                     type="range"
                     min="10"
                     max="32"
@@ -287,7 +298,7 @@ const App: React.FC = () => {
                     onChange={(e) =>
                       handleUpdate({ fontSize: parseInt(e.target.value) })
                     }
-                    className="flex-1 accent-indigo-600"
+                    className="flex-1 accent-primary"
                   />
                   <span className="text-[10px] font-bold text-slate-500 w-6">
                     {data.fontSize || 16}px
@@ -297,10 +308,10 @@ const App: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
+              <Label className="text-[10px] font-bold text-slate-400 uppercase ml-1">
                 Avatar
-              </label>
-              <div className="flex items-center gap-2 bg-white/50 p-2 rounded-2xl border border-slate-100">
+              </Label>
+              <div className="flex items-center gap-2  p-2 rounded-sm border ">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -315,7 +326,7 @@ const App: React.FC = () => {
                   {AVATARS.map((url, i) => (
                     <img
                       key={i}
-                      src={url}
+                      src={url as string}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleUpdate({ authorAvatar: url });
@@ -342,7 +353,7 @@ const App: React.FC = () => {
             ))}
           </div>
         )}
-      </div>
+      </Card>
     );
   };
 

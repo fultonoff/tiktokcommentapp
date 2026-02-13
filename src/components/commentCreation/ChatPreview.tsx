@@ -4,6 +4,7 @@ import React from 'react';
 
 import { ArrowLeft, Video, Phone, Info, MoreVertical, Camera, Mic, Smile, Image as ImageIcon, Check, CheckCheck, Send } from 'lucide-react';
 import { ChatMessage, ChatSession } from '@/types/commentCreation/commentTypes';
+import { Card, CardContent } from '../ui/card';
 
 interface Props {
   session: ChatSession;
@@ -213,12 +214,12 @@ export const ChatPreview: React.FC<Props> = ({ session, cardRef }) => {
   };
 
   return (
-    <div ref={cardRef} className="w-full max-w-[400px] h-[650px] bg-white rounded-[3rem] border-[10px] border-slate-900 overflow-hidden shadow-2xl flex flex-col relative">
+    <Card ref={cardRef} className="w-full max-w-[400px] h-[650px] bg-white rounded-[3rem] border-[10px] border-slate-900 overflow-hidden shadow-2xl flex flex-col relative">
       {renderHeader()}
-      <div style={bgStyle} className="flex-1 overflow-y-auto py-4 scrollbar-hide">
+      <CardContent style={bgStyle} className="flex-1 overflow-y-auto py-4 scrollbar-hide">
         {messages.map(renderMessage)}
-      </div>
+      </CardContent>
       {renderInput()}
-    </div>
+    </Card>
   );
 };
